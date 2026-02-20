@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚡ VOLTX PRO – Smart Grid AI</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  background: radial-gradient(circle at top, #0a1a2f, #020202);
+  color:white;
+}
+
+/* Header */
+header {
+  text-align:center;
+  padding:20px;
+  font-size:28px;
+  font-weight:bold;
+  color:#14F195;
+  letter-spacing:1px;
+}
+
+/* Container */
+.container {
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+/* KPI Cards */
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+
+.card {
+  background:rgba(255,255,255,0.05);
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 10px rgba(0,255,150,0.1);
+}
+
+.card h2 { margin:5px 0; font-size:26px; }
+
+/* Status Colors */
+.normal { color:#14F195; }
+.theft { color:#ff0033; }
+
+/* Chart */
+canvas {
+  margin-top:20px;
+  background:rgba(255,255,255,0.04);
+  border-radius:12px;
+}
+
+/* Popup */
+#popup {
+  display:none;
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#ff0033;
+  padding:15px 20px;
+  border-radius:10px;
+  font-weight:bold;
+  box-shadow:0 0 20px red;
+  z-index:9999;
+}
+
+/* Table */
+table {
+  width:100%;
+  margin-top:20px;
+  border-collapse:collapse;
+}
+
+th, td {
+  padding:8px;
+  text-align:center;
+}
+
+thead {
+  background:rgba(255,255,255,0.1);
+}
+
+tbody tr.theftRow {
+  background:rgba(255,0,0,0.2);
+}
+
+button {
+  margin-top:10px;
+  padding:8px 14px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>⚡ VOLTX PRO – AI Grid Intelligence</header>
+
+<div id="popup">🚨 POWER THEFT DETECTED</div>
+
+<div class="container">
+
+<!-- KPI CARDS -->
+<div class="cards">
+  <div class="card">
+    Voltage
+    <h2 id="voltage">--</h2>
+  </div>
+
+  <div class="card">
+    Current
+    <h2 id="current">--</h2>
+  </div>
+
+  <div class="card">
+    Status
+    <h2 id="status">Waiting</h2>
+  </div>
+
+  <div class="card">
+    Confidence
+    <h2 id="confidence">--</h2>
+  </div>
+</div>
+
+<!-- LIVE GRAPH -->
+<canvas id="chart"></canvas>
+
+<!-- HISTORY -->
+<h3 style="margin-top:20px;">📋 Live Anomaly History</h3>
+
+<table id="history">
+<thead>
+<tr>
+  <th>Time</th>
+  <th>Voltage</th>
+  <th>Current</th>
+  <th>Status</th>
+  <th>Confidence</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<button onclick="clearHistory()">Clear</button>
+
+</div>
+
+<script>
+const API="http://localhost:8000/status";
+
+const labels=[];
+const vData=[];
+const cData=[];
+const history=[];
+
+const chart=new Chart(document.getElementById("chart"),{
+  type:"line",
+  data:{
+    labels,
+    datasets:[
+      {label:"Voltage",data:vData,borderColor:"#9945FF",tension:0.3},
+      {label:"Current",data:cData,borderColor:"#14F195",tension:0.3}
+    ]
+  },
+  options:{animation:false,responsive:true}
+});
+
+async function update(){
+  try{
+    const r=await fetch(API);
+    const d=await r.json();
+    if(!d.voltage)return;
+
+    const time=new Date().toLocaleTimeString();
+    const theft=d.theft==="YES";
+
+    document.getElementById("voltage").innerText=d.voltage+" V";
+    document.getElementById("current").innerText=d.current+" A";
+    document.getElementById("confidence").innerText=d.confidence??"--";
+
+    const s=document.getElementById("status");
+    const popup=document.getElementById("popup");
+
+    if(theft){
+      s.innerText="THEFT";
+      s.className="theft";
+      popup.style.display="block";
+      setTimeout(()=>popup.style.display="none",3000);
+    }else{
+      s.innerText="NORMAL";
+      s.className="normal";
+    }
+
+    labels.push(time);
+    vData.push(d.voltage);
+    cData.push(d.current);
+    if(labels.length>25){labels.shift();vData.shift();cData.shift();}
+    chart.update();
+
+    history.unshift({time,v:d.voltage,c:d.current,t:theft,conf:d.confidence});
+    if(history.length>50)history.pop();
+    render();
+
+  }catch(e){}
+}
+
+function render(){
+  const tb=document.querySelector("#history tbody");
+  tb.innerHTML="";
+  history.forEach(r=>{
+    const tr=document.createElement("tr");
+    if(r.t)tr.className="theftRow";
+    tr.innerHTML=`<td>${r.time}</td><td>${r.v}</td><td>${r.c}</td>
+                  <td>${r.t?"🚨":"Normal"}</td><td>${r.conf??"-"}</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+function clearHistory(){history.length=0;render();}
+
+setInterval(update,2000);
+update();
+</script>
+
+</body>
+</html>
