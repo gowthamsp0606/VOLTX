@@ -1,0 +1,32 @@
+{
+  "name": "Volt",
+  "symbol": "MYT",
+  "description": "Volt is the official utility token of the MyToken project, designed to power decentralized applications and services on the Solana Devnet.",
+  "image": "https://gateway.pinata.cloud/ipfs/bafkreidubhnxs7t443ev4dpk6qh2hchskem2dp6u2nkf7nffcv2z6fhedq",
+  "external_url": "https://gsamvreth.github.io/VOLT-GAURD/",
+  "attributes": [
+    {
+      "trait_type": "Category",
+      "value": "Utility"
+    },
+    {
+      "trait_type": "Network",
+      "value": "Solana Devnet"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://gateway.pinata.cloud/ipfs/bafkreidubhnxs7t443ev4dpk6qh2hchskem2dp6u2nkf7nffcv2z6fhedq",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "75AcYqJ9BYB4Ko5mR8bbXau7nDjP68WyYFD63qxoos66",
+        "share": 100
+      }
+    ]
+  }
+}
