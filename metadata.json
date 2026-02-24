@@ -2,7 +2,7 @@
   "name": "Volt",
   "symbol": "MYT",
   "description": "The official utility token of the MyToken project.",
-  "image": "<IMAGE_URI>",
+  "image": "https://raw.githubusercontent.com/gowthamsp0606/VOLTX/main/logo.png",
   "external_url": "https://gsamvreth.github.io/VOLT-GAURD/",
   "attributes": [
     {
