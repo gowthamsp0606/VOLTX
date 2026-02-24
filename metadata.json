@@ -1,0 +1,32 @@
+{
+  "name": "Volt",
+  "symbol": "MYT",
+  "description": "The official utility token of the MyToken project.",
+  "image": "<IMAGE_URI>",
+  "external_url": "https://gsamvreth.github.io/VOLT-GAURD/",
+  "attributes": [
+    {
+      "trait_type": "Category",
+      "value": "Utility"
+    },
+    {
+      "trait_type": "Network",
+      "value": "Solana Devnet"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "<IMAGE_URI>",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": " Gk7TQNGemh5VzMifDJw6N7TXCm42F9DhhALr4FeHLtRD",
+        "share": 100
+      }
+    ]
+  }
+}
