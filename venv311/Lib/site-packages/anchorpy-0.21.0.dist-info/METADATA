@@ -1,0 +1,70 @@
+Metadata-Version: 2.4
+Name: anchorpy
+Version: 0.21.0
+Summary: The Python Anchor client.
+Project-URL: Repository, https://github.com/kevinheavey/anchorpy
+Project-URL: Documentation, https://kevinheavey.github.io/anchorpy/
+Author-email: kevinheavey <kevinheavey123@gmail.com>
+License-File: LICENSE
+Requires-Python: ~=3.9
+Requires-Dist: anchorpy-core<0.3,>=0.2.0
+Requires-Dist: based58<0.2,>=0.1.1
+Requires-Dist: borsh-construct<0.2,>=0.1.0
+Requires-Dist: construct-typing<0.6,>=0.5.1
+Requires-Dist: pyheck<0.2,>=0.1.4
+Requires-Dist: solana<1.0,>=0.36.1
+Requires-Dist: solders<1.0,>=0.21.0
+Requires-Dist: toml<0.11,>=0.10.2
+Requires-Dist: toolz<0.12,>=0.11.2
+Provides-Extra: cli
+Requires-Dist: autoflake~=1.4; extra == 'cli'
+Requires-Dist: black<23,>=22.3.0; extra == 'cli'
+Requires-Dist: genpy~=2021.1; extra == 'cli'
+Requires-Dist: ipython<9,>=8.0.1; extra == 'cli'
+Requires-Dist: typer==0.4.1; extra == 'cli'
+Provides-Extra: pytest
+Requires-Dist: py<2,>=1.11.0; extra == 'pytest'
+Requires-Dist: pytest-asyncio<0.22,>=0.21.0; extra == 'pytest'
+Requires-Dist: pytest-xprocess<0.19,>=0.18.1; extra == 'pytest'
+Requires-Dist: pytest<8,>=7.2.0; extra == 'pytest'
+Description-Content-Type: text/markdown
+
+# AnchorPy
+<div align="center">
+    <img src="https://raw.githubusercontent.com/kevinheavey/anchorpy/main/docs/img/logo.png" width="40%" height="40%">
+</div>
+
+---
+
+[![Discord Chat](https://img.shields.io/discord/889577356681945098?color=blueviolet)](https://discord.gg/sxy4zxBckh)  
+
+AnchorPy is the gateway to interacting with [Anchor](https://github.com/project-serum/anchor) programs in Python.
+It provides:
+
+- A static client generator
+- A dynamic client similar to `anchor-ts`
+- A Pytest plugin
+- A CLI with various utilities for Anchor Python development.
+
+Read the [Documentation](https://kevinheavey.github.io/anchorpy/).
+
+
+
+## Installation (requires Python >=3.9)
+
+```sh
+pip install anchorpy[cli, pytest]
+
+```
+Or, if you're not using the CLI or Pytest plugin features of AnchorPy you can just run `pip install anchorpy`.
+
+### Development Setup
+
+If you want to contribute to AnchorPy, follow these steps to get set up:
+
+1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+2. Run the unit tests:
+```sh
+uv run --all-extras pytest tests/unit
+
+```

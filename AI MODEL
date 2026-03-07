@@ -1,0 +1,89 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+from datetime import datetime
+
+app = FastAPI(title="VOLTX PRO AI Backend")
+
+# -----------------------------
+# Data Models
+# -----------------------------
+class SensorData(BaseModel):
+    voltage: float
+    current: float
+
+class AIResult(BaseModel):
+    theft: bool
+    confidence: float
+    reason: str
+
+# -----------------------------
+# Store latest state (memory)
+# -----------------------------
+latest_state = {
+    "voltage": 0.0,
+    "current": 0.0,
+    "theft": False,
+    "confidence": 0.0,
+    "reason": "No data yet",
+    "timestamp": None
+}
+
+# -----------------------------
+# AI Theft Detection Logic
+# -----------------------------
+def detect_theft(voltage: float, current: float) -> AIResult:
+
+    if voltage < 180 and current > 30:
+        return AIResult(
+            theft=True,
+            confidence=0.96,
+            reason="Voltage drop with high current spike"
+        )
+
+    if current > 45:
+        return AIResult(
+            theft=True,
+            confidence=0.91,
+            reason="Extreme current anomaly"
+        )
+
+    return AIResult(
+        theft=False,
+        confidence=0.10,
+        reason="Normal operating conditions"
+    )
+
+# -----------------------------
+# ESP32 → AI Endpoint
+# -----------------------------
+@app.post("/predict")
+def predict(data: SensorData):
+    ai_result = detect_theft(data.voltage, data.current)
+
+    latest_state.update({
+        "voltage": data.voltage,
+        "current": data.current,
+        "theft": ai_result.theft,
+        "confidence": ai_result.confidence,
+        "reason": ai_result.reason,
+        "timestamp": datetime.utcnow().isoformat()
+    })
+
+    return {
+        "status": "processed",
+        "ai_result": ai_result
+    }
+
+# -----------------------------
+# Frontend → Fetch Latest Data
+# -----------------------------
+@app.get("/status")
+def get_status():
+    return latest_state
+
+# -----------------------------
+# Health Check
+# -----------------------------
+@app.get("/")
+def root():
+    return {"message": "VOLTX PRO AI Backend Running"}
