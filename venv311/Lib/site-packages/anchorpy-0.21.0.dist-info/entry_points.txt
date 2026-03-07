@@ -1,0 +1,5 @@
+[console_scripts]
+anchorpy = anchorpy.cli:app
+
+[pytest11]
+pytest_anchorpy = anchorpy.pytest_plugin

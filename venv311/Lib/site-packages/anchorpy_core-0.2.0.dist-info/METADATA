@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: anchorpy-core
+Version: 0.2.0
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Dist: jsonalias ==0.1.1
+License-File: LICENSE
+Summary: Python bindings for Anchor Rust code
+Author-email: kevinheavey <kevinheavey123@gmail.com>
+License: Apache-2.0
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: repository, https://github.com/kevinheavey/anchorpy-core
+Project-URL: changelog, https://github.com/kevinheavey/anchorpy-core/blob/main/CHANGELOG.md
+Project-URL: documentation, https://kevinheavey.github.io/anchorpy-core/
+Project-URL: homepage, https://github.com/kevinheavey/anchorpy-core
+
+# anchorpy-core
+Python bindings for Anchor Rust code
+

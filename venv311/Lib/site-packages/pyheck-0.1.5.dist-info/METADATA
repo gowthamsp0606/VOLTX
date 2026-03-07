@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: pyheck
+Version: 0.1.5
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Summary: Python bindings for heck, the Rust case conversion library
+Author-email: kevinheavey <kevinheavey123@gmail.com>
+License: MIT License
+	
+	Copyright (c) 2022 Kevin Heavey
+	
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+	
+	The above copyright notice and this permission notice shall be included in all
+	copies or substantial portions of the Software.
+	
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+	SOFTWARE.
+	
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: documentation, https://kevinheavey.github.io/pyheck/
+Project-URL: homepage, https://github.com/kevinheavey/pyheck
+Project-URL: repository, https://github.com/kevinheavey/pyheck
+Project-URL: changelog, https://github.com/kevinheavey/pyheck/blob/main/CHANGELOG.md
+
+# pyheck
+
+PyHeck is a case conversion library (for converting strings to snake_case, camelCase etc). It is a thin wrapper around the Rust library [heck](https://github.com/withoutboats/heck).
+
+[Read the documentation.](https://kevinheavey.github.io/pyheck/)
+
+## Installation
+
+```
+pip install pyheck
+```
+
+Note: requires Python >= 3.7.
+
+## Example
+
+```python
+>>> from pyheck import snake
+>>> snake("We carry a new world here, in our hearts.")
+'we_carry_a_new_world_here_in_our_hearts'
+
+```
+
+## Development
+
+### Setup
+
+1. Install [poetry](https://python-poetry.org/)
+2. Install dev dependencies:
+
+```
+poetry install
+```
+
+3. Activate the poetry shell:
+
+```sh
+poetry shell
+```
+
+### Testing
+
+1. Run `maturin develop` to compile the Rust code.
+2. Run `make fmt`, `make lint`, and `make test`.
+
