@@ -1,2 +1,13 @@
 node_modules/
 .vscode/
+"admin_new.json" 
+"testuser.json" 
+"user.json" 
+"communities.json" 
+"voltguard_program.json" 
+"__pycache__/" 
+"*.pyc" 
+"*.pkl" 
+"*.joblib" 
+".vscode/" 
+"node_modules/" 
