@@ -452,8 +452,8 @@ VOLTX/
 | Network | Program ID |
 |---------|-----------|
 | Solana Devnet | `2Ru7HMxTjdZkVyRgQN3ygZSXh6Zdx62y2kryqwTQn24k` |
-| State Account | `CuG3KBHu65idaJFX7nHjGisg7KHJMogm1RFpt8oXdsMU` |
-| Reward Pool | `B6pndBg451sUmMXxpVeVGrRKECwYmvvbKhox4tZ3gyhf` |
+| State Account | `6qPJFRBxV6Th3swBecHJz1kEjoKtPcvdraxCRceZ56cd` |
+| Reward Pool | `VkhWZeApX7qkzAMeQUT7DmkZf2TXv7BTkLmbLZu2njW` |
 
 ---
 
