@@ -44,9 +44,9 @@ Every detection creates a **permanent on-chain record** that is mathematically i
 
 ### Live Transaction on Solana Devnet
 ```
-Signature: 5gZu9pg58Q1R3JHrqSTEQZnxLP1Mcz9H2ki7Linrbevs4Y285CgXuxkr89kdXdugtCg7LRyM3mPuZcCrePGVN2is
+Signature: 5oBqncgT13s9ZAicXwE2iapnAjZBjYPHe7emuUHKEF35gAvVoLxPK7BrvNvwoD6y7Y9pZKxPCWfLdoxbGBttoHeg
 ```
-[View on Solscan →](https://solscan.io/tx/5gZu9pg58Q1R3JHrqSTEQZnxLP1Mcz9H2ki7Linrbevs4Y285CgXuxkr89kdXdugtCg7LRyM3mPuZcCrePGVN2is?cluster=devnet)
+[View on Solana Explorer →](https://explorer.solana.com/tx/5oBqncgT13s9ZAicXwE2iapnAjZBjYPHe7emuUHKEF35gAvVoLxPK7BrvNvwoD6y7Y9pZKxPCWfLdoxbGBttoHeg?cluster=devnet)
 
 This transaction shows **3 simultaneous token transfers** in one block — 66 tokens to the reporter, 22 tokens each to two community peers. The community reward split working exactly as designed.
 
